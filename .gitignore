@@ -4,3 +4,6 @@ TP Assemblage-20241114.pdf
 
 #Ignoring the virtual environment
 .venv/
+
+# Ignoring the pycache folder
+scrpits/__pycache__
