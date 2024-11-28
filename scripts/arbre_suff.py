@@ -103,14 +103,5 @@ def compter_feuilles(noeud):
         if enfant is not None: count += compter_feuilles(enfant)
     return count
 
-file_path = './reads.fastq.fq'
-#file_path = './test.fq'
-k=31
-
-
-arbre_s = arbre_suff(file_path,k) 
-print(compter_feuilles(arbre_s))
-arbre_s = nettoyer_arbre(arbre_s,1)
-print(compter_feuilles(arbre_s))
 
 
