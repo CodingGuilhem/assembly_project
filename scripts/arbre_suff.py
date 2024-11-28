@@ -58,7 +58,41 @@ class NoeudArbre:
         self.parent = None 
         self.number = 0
 
+    def printNoeud(self):
+        print(f"etiquette : {self.etiquette}")
+        if self.A != None:
+            print(f"nucleotide A")
+        elif self.C != None:
+            print(f"nucleotide C")
+        elif self.T != None:
+            print(f"nucleotide T")
+        elif self.G != None:
+            print(f"nucleotide G")
+        else:
+            print(f"Pas de nucléotide")
+        print(f"parent : {self.parent} \nnumero : {self.number} ")
 
+    def estFeuille(self):
+        if(self.A == None and self.C == None and self.T == None and self.G == None):
+            return True 
+        else: return False
+
+def printArbre(noeud):
+    if noeud.estFeuille():
+        noeud.printNoeud()        
+    else:
+        if(noeud.A != None):
+            printArbre(noeud.A)
+        elif(noeud.T!= None):
+            printArbre(noeud.T)
+        elif(noeud.C != None):
+            printArbre(noeud.C)
+        elif(noeud.G != None):
+            printArbre(noeud.G)
+        else:
+            raise SyntaxError("L'arbre n'est pas bien formé")
+
+        noeud.printNoeud()
 def arbre_suff(file_path,k):
     root = NoeudArbre("Racine")
     with open(file_path, 'r') as fastq_file:

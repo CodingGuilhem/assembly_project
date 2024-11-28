@@ -13,7 +13,7 @@ import arbre_suff as suff
 def main(kmer_size, reads_file):
     arbre = suff.arbre_suff(reads_file,kmer_size)
     arbre_s = suff.nettoyer_arbre(arbre,1)
-
+    suff.printArbre(arbre_s)
         
 
 if __name__ == '__main__':
