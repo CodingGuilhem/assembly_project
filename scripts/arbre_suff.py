@@ -279,26 +279,3 @@ def make_fasta(dic_de_bruijn, file_path):
             file.writelines(lines_to_add)
 
 
-def main(file_path,k,threshold_representation,new_file_path):
-    start_time = time.time()
-    print("Création de l'arbre des suffixes ...")
-    arbre_suffixes = arbre_suff(file_path,k) 
-    arbre_suffixes = nettoyer_arbre(arbre_suffixes,threshold_representation)
-
-    print('Création du graph de Bruijn ...')
-    arbre_suffixes_suivie = copy.deepcopy(arbre_suffixes)
-    dic_de_bruijn = graph_de_bruijn(arbre_suffixes,arbre_suffixes_suivie)
-    dic_de_bruijn = {key: value for key, value in dic_de_bruijn.items() if not isinstance(value , int)}
-
-    print('Assemblage ...')
-    make_fasta(dic_de_bruijn,new_file_path)
-    end_time = time.time()
-    print(f"Temps pour l'assemblage : {end_time - start_time:.2f} secondes")
- 
-
-
-file_path = 'data/reads.fastq.fq'
-k=17
-threshold_representation = 1
-new_file_path = 'data/V2.fa'
-main(file_path,k,threshold_representation,new_file_path)
