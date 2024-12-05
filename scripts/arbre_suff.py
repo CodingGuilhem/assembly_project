@@ -58,6 +58,54 @@ class NoeudArbre:
         self.parent = None 
         self.number = 0
 
+    def printNoeud(self):
+        print(f"etiquette : {self.etiquette}")
+        if self.A != None:
+            print(f"nucleotide A")
+        if self.C != None:
+            print(f"nucleotide C")
+        if self.T != None:
+            print(f"nucleotide T")
+        if self.G != None:
+            print(f"nucleotide G")
+        if self.estFeuille():
+            print("feuille")
+        if self.parent != None:
+            print(f"parent : {self.parent.etiquette}")
+        else:
+            print("racine")
+        print(f"numero : {self.number} ")
+
+    def estFeuille(self):
+        if(self.A == None and self.C == None and self.T == None and self.G == None):
+            return True 
+        else: return False
+
+
+def findPath(node):
+    parent = node.Parent
+    path = node.etiquette 
+    if parent == None:
+        return parent.etiquette
+    else:
+        path += findPath(parent)
+
+    return path
+
+def printArbre(noeud):
+    if noeud.estFeuille():
+        noeud.printNoeud()        
+    else:
+        if(noeud.A != None):
+            printArbre(noeud.A)
+        if(noeud.T!= None):
+            printArbre(noeud.T)
+        if(noeud.C != None):
+            printArbre(noeud.C)
+        if(noeud.G != None):
+            printArbre(noeud.G)
+        
+        noeud.printNoeud()
 
 def arbre_suff(file_path,k):
     root = NoeudArbre("Racine")
