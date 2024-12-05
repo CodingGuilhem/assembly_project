@@ -5,7 +5,7 @@ Ce projet consiste à créer un assembleur de génome de nos propre main
 ## Prérequis
 
 - Python 3.10.12
-- Bibliothèques Python (click, copy)
+- Bibliothèques Python (click)
 
 ## Installation
 
@@ -24,6 +24,10 @@ Ce projet consiste à créer un assembleur de génome de nos propre main
 2. Exécutez le script d'assemblage :
     ```bash
     python script/main.py -k kmer_size -f fastQ_file -t threshold -o output_directory
+    ```
+3. Vous pouvez essayer le script avec le fastq de test en utilisant la commance 
+    ```bash
+    python ./scripts/main.py -k 17 -f ./data/reads.fastq.fq -t 1 -o data/test.fq
     ```
 
 ## Résultats
