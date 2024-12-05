@@ -62,20 +62,35 @@ class NoeudArbre:
         print(f"etiquette : {self.etiquette}")
         if self.A != None:
             print(f"nucleotide A")
-        elif self.C != None:
+        if self.C != None:
             print(f"nucleotide C")
-        elif self.T != None:
+        if self.T != None:
             print(f"nucleotide T")
-        elif self.G != None:
+        if self.G != None:
             print(f"nucleotide G")
+        if self.estFeuille():
+            print("feuille")
+        if self.parent != None:
+            print(f"parent : {self.parent.etiquette}")
         else:
-            print(f"Pas de nucléotide")
-        print(f"parent : {self.parent} \nnumero : {self.number} ")
+            print("racine")
+        print(f"numero : {self.number} ")
 
     def estFeuille(self):
         if(self.A == None and self.C == None and self.T == None and self.G == None):
             return True 
         else: return False
+
+
+def findPath(node):
+    parent = node.Parent
+    path = node.etiquette 
+    if parent == None:
+        return parent.etiquette
+    else:
+        path += findPath(parent)
+
+    return path
 
 def printArbre(noeud):
     if noeud.estFeuille():
@@ -83,16 +98,15 @@ def printArbre(noeud):
     else:
         if(noeud.A != None):
             printArbre(noeud.A)
-        elif(noeud.T!= None):
+        if(noeud.T!= None):
             printArbre(noeud.T)
-        elif(noeud.C != None):
+        if(noeud.C != None):
             printArbre(noeud.C)
-        elif(noeud.G != None):
+        if(noeud.G != None):
             printArbre(noeud.G)
-        else:
-            raise SyntaxError("L'arbre n'est pas bien formé")
-
+        
         noeud.printNoeud()
+
 def arbre_suff(file_path,k):
     root = NoeudArbre("Racine")
     with open(file_path, 'r') as fastq_file:
